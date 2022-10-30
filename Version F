@@ -1,0 +1,113 @@
+package Version_F;
+import java.util.Scanner;
+
+public class AlarmClock {
+	
+	double hour;
+	double minute;
+	double second;
+	
+	public AlarmClock()
+	{
+		
+	}
+	
+	public AlarmClock(double hour, double min, double sec)
+	{
+		hour = 12;
+		min = 0;
+		sec = 0;
+	}
+	
+	public void InputAlarm()
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		try {
+			System.out.println("Hour : ");
+			hour = sc.nextDouble();
+			
+			if(hour > 12)
+			{
+				throw new myException("Hours can not be greater than 12");
+			}
+			
+			System.out.println("Minute : ");
+			minute = sc.nextDouble();
+			
+			if(minute > 59)
+			{
+				throw new myException("Minutes can not be greater than 59");
+			}
+			
+			System.out.println("Seconds : ");
+			second = sc.nextDouble();
+			
+			if(second > 59)
+			{
+				throw new myException("Seconds can not be greater than 59");
+			}
+		}
+		catch(myException e) {
+			System.out.println(e);
+		}
+		
+	}
+	public void ShowAlarm()
+	{
+		System.out.println("Alarm : " + hour + " : " + minute + " : " + second);
+	}
+	
+	public void setAlarm(double mhour, double mmin, double msec)
+	{
+		this.hour = mhour;
+		this.minute = mmin;
+		this.second = msec;
+		
+		if(mhour > 12)
+		{
+			this.hour = 0;
+		}
+		if(mmin > 59)
+		{
+			this.minute = 0;
+		}
+		if(msec > 59)
+		{
+			this.second = 0;
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		AlarmClock ac1 = new AlarmClock();
+		AlarmClock ac2 = new AlarmClock();
+		
+		ac1.InputAlarm();
+		ac1.ShowAlarm();
+		
+		ac2.setAlarm(5, 30, 0);
+		ac2.ShowAlarm();
+	}
+
+}
+
+
+
+
+package Version_F;
+
+public class myException extends Exception{
+	
+	myException(String msg)
+	{
+		super(msg);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
